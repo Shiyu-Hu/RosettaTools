@@ -309,6 +309,10 @@ def RtoA(rosettapdb, amberpdb, tmppath):
             newline = line[:12] + amber_name + line[16:]
             f.write("%s\n" % newline)
     os.system("pdb4amber -i {} -o {}".format(tmpfile, amberpdb))
+    pdbname = amberpdb.split(".pdb")[0]
+    os.system("mv {}_nonprot.pdb ".format(pdbname)+tmppath)  
+    os.system("mv {}_renum.txt ".format(pdbname)+tmppath)
+    os.system("mv {}_sslink ".format(pdbname)+tmppath)
 
 def main(choice, input_pdb, output_pdb, tmppath):
     if choice == "AtoR":
@@ -316,9 +320,9 @@ def main(choice, input_pdb, output_pdb, tmppath):
     if choice == "RtoA":
         RtoA(input_pdb, output_pdb, tmppath)
 
-if __name__ == "main":
+if __name__ == "__main__":
    choice=sys.argv[1]; input_pdb=sys.argv[2]; output_pdb=sys.argv[3]; tmppath=sys.argv[4]
-   main(choice, amberpdb, rosettapdb, tmppath)
+   main(choice, input_pdb, output_pdb, tmppath)
     
 
 
