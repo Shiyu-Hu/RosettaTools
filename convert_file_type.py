@@ -310,14 +310,14 @@ def RtoA(rosettapdb, amberpdb, tmppath):
             f.write("%s\n" % newline)
     os.system("pdb4amber -i {} -o {}".format(tmpfile, amberpdb))
 
-def main(choice, amberpdb, rosettapdb, tmppath):
+def main(choice, input_pdb, output_pdb, tmppath):
     if choice == "AtoR":
-        AtoR(amberpdb,rosettapdb)
+        AtoR(input_pdb, output_pdb)
     if choice == "RtoA":
-        RtoA(rosettapdb, amberpdb, tmppath)
+        RtoA(input_pdb, output_pdb, tmppath)
 
 if __name__ == "main":
-   choice=sys.argv[1]; amberpdb=sys.argv[2]; rosettapdb=sys.argv[3]; tmppath=sys.argv[4]
+   choice=sys.argv[1]; input_pdb=sys.argv[2]; output_pdb=sys.argv[3]; tmppath=sys.argv[4]
    main(choice, amberpdb, rosettapdb, tmppath)
     
 
