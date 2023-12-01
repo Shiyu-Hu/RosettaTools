@@ -260,9 +260,8 @@ def replace_residues(lines):
 
 def AtoR(amberpdb,rosettapdb):
     """
-    sourcepath : amber pdb file path
-    rosettapath : changed rosetta pdb file path
-    typelines : /A-R.dat 
+    amberpdb : amber pdb file path
+    rosettapdb : changed rosetta pdb file path 
     """
     lines = open(amberpdb,'r').readlines()
     tmplines = replace_residues(lines)
@@ -281,19 +280,16 @@ def AtoR(amberpdb,rosettapdb):
         mutfile.write("%s\n" % newline)
     mutfile.close()
 
-def RtoA(path, rosettapdb, amberpdb):
+def RtoA(tmppath, rosettapdb, amberpdb):
     """
     rosettapath : rosetta pdb file path
     amberpath : changed amber pdb file path
-    fileAR : atom type file
-    typelines : read pdb file in a list
+    
     """
     lines=open(rosettapdb, 'r').readlines()
-    #path = os.getcwd()
+    #tmppath = os.getcwd()
     tmplines = []
-    #tmpfile = open(os.path.join(path, "tmp.pdb"), "w")
-    tmpfile = os.path.join(path, "tmp.pdb")
-    #mutfile=open(amberpdb,'w')
+    tmpfile = os.path.join(tmppath, "tmp.pdb")
     for line in lines:
         line = line.strip()
         if line.startswith('ATOM'):
@@ -310,8 +306,7 @@ def RtoA(path, rosettapdb, amberpdb):
                     amber_name = termini2A[atom_name]
             newline = line[:12] + amber_name + line[16:]
             f.write("%s\n" % newline)
-    #tmpfile.close()
     os.system("pdb4amber -i {} -o {}".format(tmpfile, amberpdb))
 
 #AtoR("5hn1_2mer_amber.pdb", "wild_ros.pdb")
-RtoA("./", "wild_ros_0001.pdb", "muta.pdb")
+#RtoA("./", "wild_ros_0001.pdb", "muta.pdb")
