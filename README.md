@@ -9,9 +9,9 @@ convert pdb file to be used in Rosetta or Amber.
  - 5hn1_to_ros.pdb: output Rosetta PDB file  
 2. convert Rosetta formatted PDB file to Amber formmated PDB file:  
   python convert_file_type.py RtoA ./example/5hn1_ros.pdb ./exampel/5hn1_to_amber.pdb ./example/tmp  
- - 5hn1_ros.pdb: input Rosetta PDB  
- - 5hn1_to_amber.pdb: output Amber PDB  
- - tmppath: path to store tmp files
+- 5hn1_ros.pdb: input Rosetta PDB  
+- 5hn1_to_amber.pdb: output Amber PDB  
+- tmppath: path to store tmp files
 ## Required third-party software:
 1. Amber22
 2. Rosetta2017
