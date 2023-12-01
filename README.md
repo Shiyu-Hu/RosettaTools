@@ -3,6 +3,6 @@ Here contains useful python scripts during MD simulations using Rosetta and Ambe
 ### convert_file_type.py
 convert pdb file to be used in Rosetta or Amber.
 ### third-party software:
-  Amber22
-  Rosetta2017
-  Python3
+1. Amber22
+2. Rosetta2017
+3. Python3
