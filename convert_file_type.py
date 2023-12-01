@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 import os
 import sys
 
@@ -280,11 +282,11 @@ def AtoR(amberpdb,rosettapdb):
         mutfile.write("%s\n" % newline)
     mutfile.close()
 
-def RtoA(tmppath, rosettapdb, amberpdb):
+def RtoA(rosettapdb, amberpdb, tmppath):
     """
-    rosettapath : rosetta pdb file path
-    amberpath : changed amber pdb file path
-    
+    rosettapdb : rosetta pdb file path
+    amberpdb : changed amber pdb file path
+    tmppath: path to store tmp pdb files
     """
     lines=open(rosettapdb, 'r').readlines()
     #tmppath = os.getcwd()
@@ -308,5 +310,15 @@ def RtoA(tmppath, rosettapdb, amberpdb):
             f.write("%s\n" % newline)
     os.system("pdb4amber -i {} -o {}".format(tmpfile, amberpdb))
 
-#AtoR("5hn1_2mer_amber.pdb", "wild_ros.pdb")
-#RtoA("./", "wild_ros_0001.pdb", "muta.pdb")
+def main(choice, amberpdb, rosettapdb, tmppath):
+    if choice == "AtoR":
+        AtoR(amberpdb,rosettapdb)
+    if choice == "RtoA":
+        RtoA(rosettapdb, amberpdb, tmppath)
+
+if __name__ == "main":
+   choice=sys.argv[1]; amberpdb=sys.argv[2]; rosettapdb=sys.argv[3]; tmppath=sys.argv[4]
+   main(choice, amberpdb, rosettapdb, tmppath)
+    
+
+
